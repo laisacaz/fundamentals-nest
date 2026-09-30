@@ -17,6 +17,7 @@ export class UserController {
         return this.userService.createUser(userData);
     }
 
+    @UseGuards(AuthGuard)
     @Put(':id')
     async updateUser(
         @Body() userData: Prisma.UserUpdateInput,
@@ -28,6 +29,7 @@ export class UserController {
         });
     }
 
+    @UseGuards(AuthGuard)
     @Delete(':id')
     async deleteUser(@Param('id') id: string): Promise<UserModel> {
         return this.userService.deleteUser({ id });
